@@ -1,0 +1,174 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--color-sky-blue: #38bdf8;
+	--color-sky-gold: #e9b207;
+}
+
+/* Global custom scrollbar matching Skyskraber */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: theme(colors.sky.200) theme(colors.sky.100);
+}
+
+.dark * {
+	scrollbar-color: theme(colors.slate.600) theme(colors.slate.800);
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: theme(colors.sky.100);
+	border: 1px solid theme(colors.sky.200);
+}
+
+.dark ::-webkit-scrollbar-track {
+	background: theme(colors.slate.800);
+	border-color: theme(colors.slate.700);
+}
+
+::-webkit-scrollbar-thumb {
+	background: theme(colors.sky.200);
+	border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+	background: theme(colors.slate.600);
+	border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: theme(colors.sky.300);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+	background: theme(colors.slate.500);
+}
+
+/* Aura glow effect for ranked users and custom auras */
+/* Uses --aura-color CSS variable (space-separated RGB) for custom colors */
+@keyframes aura-pulse {
+	0%,
+	100% {
+		box-shadow: 0 0 5px 1px rgb(var(--aura-color, 96 165 250) / 0.2);
+	}
+	50% {
+		box-shadow: 0 0 9px 2px rgb(var(--aura-color, 96 165 250) / 0.28);
+	}
+}
+
+@keyframes aura-pulse-2 {
+	0%,
+	100% {
+		box-shadow: 0 0 7px 2px rgb(var(--aura-color, 59 130 246) / 0.28);
+	}
+	50% {
+		box-shadow: 0 0 13px 3px rgb(var(--aura-color, 59 130 246) / 0.38);
+	}
+}
+
+@keyframes aura-pulse-3 {
+	0%,
+	100% {
+		box-shadow: 0 0 10px 2px rgb(var(--aura-color, 37 99 235) / 0.35);
+	}
+	50% {
+		box-shadow: 0 0 18px 5px rgb(var(--aura-color, 37 99 235) / 0.45);
+	}
+}
+
+@keyframes aura-pulse-4 {
+	0%,
+	100% {
+		box-shadow:
+			0 0 13px 3px rgb(var(--aura-color, 29 78 216) / 0.45),
+			0 0 5px 1px rgb(255 255 255 / 0.15);
+	}
+	50% {
+		box-shadow:
+			0 0 22px 6px rgb(var(--aura-color, 29 78 216) / 0.55),
+			0 0 8px 2px rgb(255 255 255 / 0.25);
+	}
+}
+
+@keyframes aura-pulse-5 {
+	0%,
+	100% {
+		box-shadow:
+			0 0 16px 4px rgb(var(--aura-color, 30 64 175) / 0.55),
+			0 0 7px 2px rgb(255 255 255 / 0.2);
+	}
+	50% {
+		box-shadow:
+			0 0 28px 8px rgb(var(--aura-color, 30 64 175) / 0.65),
+			0 0 10px 3px rgb(255 255 255 / 0.3);
+	}
+}
+
+/* GPU compositing fix for smooth animations */
+.aura-glow-1,
+.aura-glow-2,
+.aura-glow-3,
+.aura-glow-4,
+.aura-glow-5,
+.aura-card-glow {
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+}
+
+.aura-glow-1 {
+	--aura-color: 96 165 250;
+	animation: aura-pulse 3.1s ease-in-out infinite;
+	border-radius: 50%;
+	overflow: visible;
+}
+
+.aura-glow-2 {
+	--aura-color: 59 130 246;
+	animation: aura-pulse-2 2.9s ease-in-out infinite;
+	border-radius: 50%;
+	overflow: visible;
+}
+
+.aura-glow-3 {
+	--aura-color: 37 99 235;
+	animation: aura-pulse-3 2.7s ease-in-out infinite;
+	border-radius: 50%;
+	overflow: visible;
+}
+
+.aura-glow-4 {
+	--aura-color: 29 78 216;
+	animation: aura-pulse-4 2.6s ease-in-out infinite;
+	border-radius: 50%;
+	overflow: visible;
+}
+
+.aura-glow-5 {
+	--aura-color: 30 64 175;
+	animation: aura-pulse-5 2.4s ease-in-out infinite;
+	border-radius: 50%;
+	overflow: visible;
+}
+
+.aura-card-glow {
+	--aura-color: 96 165 250;
+	animation: aura-pulse 3.1s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.aura-glow-1,
+	.aura-glow-2,
+	.aura-glow-3,
+	.aura-glow-4,
+	.aura-glow-5,
+	.aura-card-glow {
+		animation: none;
+	}
+}

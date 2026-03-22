@@ -1,0 +1,13 @@
+node_modules
+dist
+.env
+*.local
+bun.lock
+
+# Development artifacts
+*.png
+screenshots/
+.tanstack/
+.playwright-mcp/
+.mcp.json
+.claude/
